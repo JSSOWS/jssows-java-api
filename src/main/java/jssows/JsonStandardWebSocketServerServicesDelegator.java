@@ -47,7 +47,7 @@ public class JsonStandardWebSocketServerServicesDelegator<W, S> implements JsonS
         JsonHandler<W,S> handler = bindings.get(service);
         if (handler != null) {
             JSONObject data = jSONObject.getJSONObject("data");
-            String callbackId = jSONObject.getString("callback");
+            String callbackId = jSONObject.optString("callback");
             boolean shouldRemove = handler.handle(data, this, conn, callbackId);
             if (shouldRemove) {
                 unbind(service);
